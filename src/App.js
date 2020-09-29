@@ -1,33 +1,38 @@
 import React from 'react';
 import './App.css';
-import ContactCard from './Components/ContactCard';
 import Footer from './Components/Footer';
 import MyInfo from './Components/MyInfo';
 import NavBar from './Components/NavBar';
-import TodoItem from './Components/TodoItem'
-import Joke from './Components/Joke'
-import jokesData from './Components/jokesData';
+import TodoItem from './Components/TodoItem';
+import productsData from './vschoolProducts';
+import Product from './Components/Product';
+import todosData from './todosData'
 
 function App() {
-    const jokeComponents = jokesData.map(joke => 
-        <Joke key={joke.id} question={joke.question} punchLine={joke.punchLine} />
-    )
+    
+    const products = productsData.map(item =>
+        <Product product ={item} key={item.id} name={item.name} price={item.price} description={item.description} />   )
+        const todoItemComponents = todosData.map(item => 
+            <TodoItem 
+            todoItem={item} 
+            key={item.id} 
+            text={item.text} 
+            completed={item.completed} />
+            )
+
 
     return (
         <div className="App">
             <NavBar />
             <MyInfo />
             <div className="todo-list">
-                <TodoItem />
-                <TodoItem />
-                <TodoItem />
-                <TodoItem />
-                <TodoItem />
-                <TodoItem />
+                <h2>My Todo list</h2>
+                {todoItemComponents}
             </div>
-            <div>
-                {jokeComponents}
+            <div className="todo-list">
+                {products}
             </div>
+
             <Footer />
         </div>
     );
